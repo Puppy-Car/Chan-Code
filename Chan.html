@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple AI Chatbot</title>
+</head>
+<body>
+    <h1>AI Chatbot</h1>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        const responses = {
+            "hello": "Hi there! How can I help you today?",
+            "how are you": "I'm just a bunch of code, but I'm here to help you!",
+            "bye": "Goodbye! Have a great day!"
+        };
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value.toLowerCase();
+            const chatbox = document.getElementById('chatbox');
+            const userMessage = document.createElement('p');
+            userMessage.textContent = "You: " + userInput;
+            chatbox.appendChild(userMessage);
+
+            const botResponse = document.createElement('p');
+            if (responses[userInput]) {
+                botResponse.textContent = "Bot: " + responses[userInput];
+            } else {
+                botResponse.textContent = "Bot: I'm not sure how to respond to that.";
+            }
+            chatbox.appendChild(botResponse);
+
+            document.getElementById('userInput').value = '';
+        }
+    </script>
+</body>
+</html>

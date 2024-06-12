@@ -1,2 +1,3 @@
-*Welcome to Chan's Code
+Welcome to Chan's Code
 ---
+Coding

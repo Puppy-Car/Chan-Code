@@ -4,13 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>簡易AI聊天介面</title>
+    <style>
+        #chatContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        #chatBox {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #userInput {
+            width: 290px;
+        }
+    </style>
 </head>
 <body>
-    <h1>我的AI聊天機器人</h1>
-    <form action="您的服務器處理URL" method="post">
-        <label for="userInput">請輸入您的問題：</label>
-        <input type="text" id="userInput" name="userInput" required>
-        <input type="submit" value="提交">
-    </form>
+    <div id="chatContainer">
+        <div id="chatBox"></div>
+        <input type="text" id="userInput" placeholder="請輸入您的問題" />
+        <button onclick="sendMessage()">發送</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var input = document.getElementById('userInput');
+            var message = input.value.trim();
+            var chatBox = document.getElementById('chatBox');
+
+            if(message !== "") {
+                // 顯示用戶輸入
+                chatBox.innerHTML += '<div>用戶: ' + message + '</div>';
+
+                // 簡單的回應邏輯
+                var response = '';
+                if(message.includes('你好')) {
+                    response = 'AI: 你好！有什麼可以幫助你的嗎？';
+                } else if(message.includes('再見')) {
+                    response = 'AI: 再見，希望很快能再次幫助你！';
+                } else {
+                    response = 'AI: 對不起，我不太明白你的意思。';
+                }
+
+                // 顯示AI回應
+                chatBox.innerHTML += '<div>' + response + '</div>';
+
+                // 清空輸入框
+                input.value = '';
+                // 滾動到最新訊息
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+    </script>
 </body>
 </html>
